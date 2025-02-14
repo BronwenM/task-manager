@@ -1,6 +1,21 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { taskCreated } from './tasksSlice';
 
 const NewTaskForm = () => {
+  const dispatch = useDispatch();
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    const taskData = e.currentTarget
+    const title = taskData.taskTitle.value
+
+    if(title) {
+      dispatch(taskCreated({title, description: '', due_date: '', is_completed: ''}))
+    }
+  }
+
   return (
     <section>
       <form>
