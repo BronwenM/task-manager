@@ -3,11 +3,12 @@ import styled from 'styled-components'
 
 const SideNav = styled.nav`
   height: 100vh;
-  min-width: 150px;
-  background-color: #4287f5;
+  width: 150px;
+  background-color:rgb(103, 153, 234);
   color: #fff;
   padding: 3rem 1rem;
   text-align: left;
+  position:fixed
 `
 
 const Navbar = () => {

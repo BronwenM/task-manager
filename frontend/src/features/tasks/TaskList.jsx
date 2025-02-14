@@ -23,20 +23,29 @@ const TaskContainer = styled.div`
 const TaskTitle = styled.span`
   cursor: pointer;
   user-select: none;
+  width: 100%;
+  padding: 1rem 0;
 `
 
 const TaskCompleteButton = styled.button`
   background-color: #d9d9d9;
-  border-radius: 50%;
   width: 50px;
   height: 50px;
   margin-right: 1.5rem;
+  padding: 6px;
+
   &:focus {outline: none;}
 
-  border: 8px solid #757c60;
+  border: 6px solid #757c60;
+
+  img {
+    visibility: ${props => props.$completed ? "visible" : "hidden"};
+    object-fit: fill;
+    height: 100%;
+  }
 
   &:hover {
-    border: 8px solid rgb(159, 169, 130);
+    border: 6px solid rgb(159, 169, 130);
   }
   `;
 
@@ -76,7 +85,7 @@ const TaskItem = (props) => {
   return (
     <>
       <TaskContainer  $completed={is_completed === "true"}>
-        <TaskCompleteButton $completed={is_completed === "true"} onClick={() => handleComplete(props.task)}/>
+        <TaskCompleteButton $completed={is_completed === "true"} onClick={() => handleComplete(props.task)}><img src="../assets/checkmark.png" alt="task complete checkmark"/></TaskCompleteButton>
         <TaskTitle onClick={handleDetailsToggle} >{title}</TaskTitle>
       </TaskContainer>
       {toggleDetails && 

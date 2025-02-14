@@ -5,9 +5,11 @@ import NewTaskForm from './features/tasks/NewTaskForm'
 
 const ContentContainer = styled.section`
   background:rgb(240, 240, 240);
-  padding: 2rem;
+  padding: 2rem 4rem;
   height: 100%;
   width: 100%;
+  margin-left: 150px;
+  min-height: 100vh;
 `
 const LayoutContainer = styled.div`
   display: flex;
