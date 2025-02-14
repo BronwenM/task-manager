@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const SideNav = styled.nav`
@@ -10,13 +11,17 @@ const SideNav = styled.nav`
   text-align: left;
   position:fixed
 `
-
+const NavLink = styled(Link)`
+  display: block;
+  color: white;
+  margin-bottom: 1.5rem;
+`
 const Navbar = () => {
   return (
     <>
       <SideNav>
-        <p>HOME</p>
-        <p>NEW TASK +</p>
+        <NavLink to='/'>HOME</NavLink>
+        <NavLink to='/tasks/new'>NEW TASK +</NavLink>
       </SideNav>
     </>
   )

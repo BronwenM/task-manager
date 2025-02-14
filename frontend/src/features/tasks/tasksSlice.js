@@ -40,14 +40,16 @@ const tasksSlice = createSlice({
     },
     taskUpdated: {
       reducer(state, action) {
-        const {id, title, description, due_date, is_completed} = action.payload
-        const taskWithId = state.find(task => task.id === id)
+        const {id, title, description, due_date} = action.payload
+        console.log(action.payload)
+        const taskWithId = state.find(task => task.id == id)
 
         if(taskWithId) {
           taskWithId.title = title
           taskWithId.description = description
           taskWithId.due_date = due_date
-          taskWithId.is_completed = is_completed
+        } else {
+          console.error("Failed to update record")
         }
       }
     },

@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 const Details = styled.div`
   width: 100%;
@@ -53,7 +54,7 @@ const ButtonLayout = styled.div`
 `
 
 const TaskDetails = (props) => {
-  const {is_completed, description, due_date} = props.task
+  const {id, is_completed, description, due_date} = props.task
 
   const dateOptions = {
     weekday: "long",
@@ -71,7 +72,7 @@ const TaskDetails = (props) => {
           <p>{description}</p>
           <p>Due {new Date(due_date).toLocaleDateString("en-GB", dateOptions)}</p>
           <ButtonLayout> 
-            <EditButton>Edit</EditButton>
+            <Link to={`/tasks/edit/${id}`}><EditButton>Edit</EditButton></Link>
             <DeleteButton>Delete</DeleteButton>
           </ButtonLayout>
     </Details>

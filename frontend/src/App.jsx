@@ -29,7 +29,7 @@ function App() {
           <Routes>
             <Route path='/' element={<HomePage/>} />
             <Route path='/tasks/new' element={<h2>Create new</h2>} />
-            <Route path='/tasks/edit/:id' element={<EditTaskPage/>} />
+            <Route path='/tasks/edit/:taskId' element={<EditTaskPage/>} />
           </Routes>          
         </ContentContainer>
       </LayoutContainer>
