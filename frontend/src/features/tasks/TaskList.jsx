@@ -2,6 +2,7 @@ import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux"
 import { selectAllTasks, taskUpdated } from "./tasksSlice";
 import { useEffect, useState } from "react";
+import TaskDetails from "./TaskDetails";
 
 const TaskContainer = styled.div`
   width: 100%;
@@ -50,7 +51,7 @@ const TaskCompleteButton = styled.button`
   `;
 
 
-const TaskDetails = styled(TaskContainer)`
+/* const TaskDetails = styled(TaskContainer)`
   background-color: #fefefe;
   border: none;
   box-shadow: none;
@@ -66,7 +67,7 @@ const TaskDetails = styled(TaskContainer)`
   h3 {
     text-decoration: underline;
   }
-`
+` */
 
 const TaskItem = (props) => {
   const {title, description, due_date, is_completed} = props.task
@@ -88,12 +89,16 @@ const TaskItem = (props) => {
         <TaskCompleteButton $completed={is_completed === "true"} onClick={() => handleComplete(props.task)}><img src="../assets/checkmark.png" alt="task complete checkmark"/></TaskCompleteButton>
         <TaskTitle onClick={handleDetailsToggle} >{title}</TaskTitle>
       </TaskContainer>
-      {toggleDetails && 
-        <TaskDetails>
-          <h3>Task Details</h3>
-          <h5><em>{is_completed === "true" ? "Completed": "Incomplete"}</em></h5>
-          <p>{description}</p>
-        </TaskDetails>
+      {toggleDetails && <TaskDetails task={props.task}/>
+        // <TaskDetails>
+        //   <h3>Task Details</h3>
+        //   <h5><em>{is_completed === "true" ? "Completed": "Incomplete"}</em></h5>
+        //   <p>{description}</p>
+        //   <div> 
+        //     <button>Edit</button>
+        //     <button>Delete</button>
+        //   </div>
+        // </TaskDetails>
       }
     </>
   )
@@ -104,6 +109,7 @@ const TaskList = () => {
 
   return (
     <section>
+      <h2>Your Upcoming Tasks</h2>
       {tasks.map(task => (
         <TaskItem key={task.id} task={task} />
       ))}
