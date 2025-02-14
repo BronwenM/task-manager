@@ -4,7 +4,7 @@ import TaskList from './features/tasks/TaskList'
 import NewTaskForm from './features/tasks/NewTaskForm'
 
 const ContentContainer = styled.section`
-  background: #f58a42;
+  background:rgb(240, 240, 240);
   padding: 2rem;
   height: 100%;
   width: 100%;
@@ -26,7 +26,7 @@ function App() {
     <LayoutContainer>
       <Navbar />
       <ContentContainer>
-        <MainHeader>Here's What You Have To Do</MainHeader>
+        <MainHeader>What Do You Have To Do?</MainHeader>
         <NewTaskForm />
         <TaskList />
       </ContentContainer>

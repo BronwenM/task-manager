@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux"
 import { selectAllTasks, taskUpdated } from "./tasksSlice";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const TaskContainer = styled.div`
   width: 100%;
@@ -55,7 +55,7 @@ const TaskDetails = styled(TaskContainer)`
   }
   
   h3 {
-    font-weight: bold;
+    text-decoration: underline;
   }
 `
 

@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, nanoid } from '@reduxjs/toolkit'
 
 const initialState = [
   {
@@ -31,6 +31,11 @@ const tasksSlice = createSlice({
     taskCreated: {
       reducer(state, action) {
         state.push(action.payload)
+      },
+      prepare(title, description, due_date) {
+        return {
+          payload: {id: nanoid(), title, description, due_date, is_completed: "false"}
+        }
       }
     },
     taskUpdated: {

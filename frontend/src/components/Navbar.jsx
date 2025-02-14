@@ -15,7 +15,7 @@ const Navbar = () => {
     <>
       <SideNav>
         <p>HOME</p>
-        <p>NEW TASK</p>
+        <p>NEW TASK +</p>
       </SideNav>
     </>
   )
