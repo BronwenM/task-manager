@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 import Navbar from './components/Navbar'
-import TaskList from './features/tasks/TaskList'
-import NewTaskForm from './features/tasks/NewTaskForm'
+import {BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom'
+import HomePage from './pages/HomePage'
+import EditTaskPage from './pages/EditTaskPage'
 
 const ContentContainer = styled.section`
   background:rgb(240, 240, 240);
@@ -18,21 +19,21 @@ const LayoutContainer = styled.div`
   align-items: flex-start;
 `
 
-const MainHeader = styled.h1`
-  font-size: 2rem;
-  font-weight: bold;
-`
 
 function App() {
   return (
-    <LayoutContainer>
-      <Navbar />
-      <ContentContainer>
-        <MainHeader>What Do You Have To Do?</MainHeader>
-        <NewTaskForm />
-        <TaskList />
-      </ContentContainer>
-    </LayoutContainer>
+    <Router>
+      <LayoutContainer>
+        <Navbar />
+        <ContentContainer>
+          <Routes>
+            <Route path='/' element={<HomePage/>} />
+            <Route path='/tasks/new' element={<h2>Create new</h2>} />
+            <Route path='/tasks/edit/:id' element={<EditTaskPage/>} />
+          </Routes>          
+        </ContentContainer>
+      </LayoutContainer>
+    </Router>
   )
 }
 

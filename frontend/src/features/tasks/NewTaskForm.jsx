@@ -40,6 +40,8 @@ const NewTaskForm = () => {
     if(title) {
       dispatch(taskCreated(title, description, due_date))
     }
+
+    e.currentTarget.reset();
   }
 
   return (

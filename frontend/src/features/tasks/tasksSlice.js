@@ -50,6 +50,11 @@ const tasksSlice = createSlice({
           taskWithId.is_completed = is_completed
         }
       }
+    },
+    taskDeleted: {
+      reducer(state, action) {
+        
+      }
     }
   }
 })

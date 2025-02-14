@@ -50,25 +50,6 @@ const TaskCompleteButton = styled.button`
   }
   `;
 
-
-/* const TaskDetails = styled(TaskContainer)`
-  background-color: #fefefe;
-  border: none;
-  box-shadow: none;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 2rem;
-
-  h3, h5 {
-    margin: 0;
-  }
-  
-  h3 {
-    text-decoration: underline;
-  }
-` */
-
 const TaskItem = (props) => {
   const {title, description, due_date, is_completed} = props.task
   const dispatch = useDispatch()
@@ -89,17 +70,7 @@ const TaskItem = (props) => {
         <TaskCompleteButton $completed={is_completed === "true"} onClick={() => handleComplete(props.task)}><img src="../assets/checkmark.png" alt="task complete checkmark"/></TaskCompleteButton>
         <TaskTitle onClick={handleDetailsToggle} >{title}</TaskTitle>
       </TaskContainer>
-      {toggleDetails && <TaskDetails task={props.task}/>
-        // <TaskDetails>
-        //   <h3>Task Details</h3>
-        //   <h5><em>{is_completed === "true" ? "Completed": "Incomplete"}</em></h5>
-        //   <p>{description}</p>
-        //   <div> 
-        //     <button>Edit</button>
-        //     <button>Delete</button>
-        //   </div>
-        // </TaskDetails>
-      }
+      {toggleDetails && <TaskDetails task={props.task}/>}
     </>
   )
 }

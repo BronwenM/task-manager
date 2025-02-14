@@ -3,17 +3,19 @@ import styled from 'styled-components'
 
 const Details = styled.div`
   width: 100%;
-  margin: 1.5rem 0;
+  margin: -1rem 0 2rem;
   color: black;
   border-radius: 8px;
   transition: all 0.25s;
 
-  background-color: #fefefe;
+  background-color: ${props => props.$completed ? "#dee3cf" : "#fefefe"} ;
   border: none;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 2rem;
+  box-shadow: #0000003b 3px 3px 3px;
+
 
   h3, h5 {
     margin: 0;
@@ -34,7 +36,7 @@ const DeleteButton = styled.button`
   }
 `
 const EditButton = styled.button`
-  background: none;
+  background: #fff;
   color:rgb(50, 106, 197);
   border: 1px solid rgb(50, 106, 197);
   margin-right: 0.5rem;
@@ -63,7 +65,7 @@ const TaskDetails = (props) => {
   };
   
   return (
-    <Details>
+    <Details $completed={is_completed === "true"}>
           <h3>Task Details</h3>
           <h5><em>{is_completed === "true" ? "Completed": "Incomplete"}</em></h5>
           <p>{description}</p>
