@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux"
-import { selectAllTasks } from "./tasksSlice";
+import { selectAllTasks, taskUpdated } from "./tasksSlice";
 
 const TaskContainer = styled.div`
   width: 100%;
@@ -26,12 +26,21 @@ const TaskCompleteButton = styled.button`
 
 
 const TaskItem = (props) => {
-  const {title, due_date} = props;
+  const {title, due_date, is_completed} = props.task;
+  const dispatch = useDispatch();
+
+  const handleComplete = (task) => {
+    const { is_completed} = task
+
+    console.log(`Change complete status for ${task.title}!`);
+    const inverseComplete = is_completed === "true" ? "false" : "true"
+    dispatch(taskUpdated({...task, is_completed: inverseComplete}))
+  }
 
   return (
     <>
       <TaskContainer>
-        <TaskCompleteButton />
+        <TaskCompleteButton onClick={() => handleComplete(props.task)}/>
         <span>{title}</span>
       </TaskContainer>
     </>
@@ -44,7 +53,7 @@ const TaskList = () => {
   return (
     <section>
       {tasks.map(task => (
-        <TaskItem key={task.id} title={task.title} due_date={task.due_date} />
+        <TaskItem key={task.id} task={task} />
       ))}
     </section>
   )
