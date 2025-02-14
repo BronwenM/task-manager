@@ -15,6 +15,12 @@ const NavLink = styled(Link)`
   display: block;
   color: white;
   margin-bottom: 1.5rem;
+
+  &:hover {
+    color: white;
+    text-decoration: underline;
+    text-underline-offset: 8px;
+  }
 `
 const Navbar = () => {
   return (

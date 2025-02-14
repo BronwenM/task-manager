@@ -3,6 +3,7 @@ import Navbar from './components/Navbar'
 import {BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import EditTaskPage from './pages/EditTaskPage'
+import NewTaskPage from './pages/NewTaskPage'
 
 const ContentContainer = styled.section`
   background:rgb(240, 240, 240);
@@ -28,7 +29,7 @@ function App() {
         <ContentContainer>
           <Routes>
             <Route path='/' element={<HomePage/>} />
-            <Route path='/tasks/new' element={<h2>Create new</h2>} />
+            <Route path='/tasks/new' element={<NewTaskPage/>} />
             <Route path='/tasks/edit/:taskId' element={<EditTaskPage/>} />
           </Routes>          
         </ContentContainer>

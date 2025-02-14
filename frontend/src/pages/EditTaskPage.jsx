@@ -67,6 +67,7 @@ const EditTaskPage = () => {
         <textarea name='taskDescription' id='taskDescription' defaultValue={task.description} placeholder='Take some notes about what you need to do'/>
         <label htmlFor='dueDate'>Due Date</label>
         <input type='datetime-local' id='dueDate' defaultValue={task.due_date}/>
+        {console.log(new Date(task.due_date))}
         <button>Save Changes</button>
       </EditTaskForm>
     </section>
