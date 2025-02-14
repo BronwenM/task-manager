@@ -1,0 +1,25 @@
+# Using postgres as the development and test database ensure the development user has correct access perms for the databases
+#
+default: &default
+  adapter: postgresql
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+
+development:
+  <<: *default
+  database: task_manager_dev
+  username: development
+  password: development
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  <<: *default  
+  database: task_manager_test
+  username: development
+  password: development
+
+production:
+  <<: *default
+  database: <%= ENV["DATABASE_URL"] %>
