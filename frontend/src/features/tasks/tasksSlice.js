@@ -55,7 +55,13 @@ const tasksSlice = createSlice({
     },
     taskDeleted: {
       reducer(state, action) {
+        const {id} = action.payload
+        const taskWithId = state.find(task => task.id == id)
         
+        if(taskWithId) {
+          return state.filter(task => task.id !== id)
+        }
+
       }
     }
   }
@@ -64,7 +70,7 @@ const tasksSlice = createSlice({
 export default tasksSlice.reducer
 
 //Export actions
-export const {taskCreated, taskUpdated} = tasksSlice.actions
+export const {taskCreated, taskUpdated, taskDeleted} = tasksSlice.actions
 
 //Selectors to get state data
 export const selectAllTasks = (state) => state.tasks

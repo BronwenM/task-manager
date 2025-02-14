@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { taskDeleted } from './tasksSlice'
 
 const Details = styled.div`
   width: 100%;
@@ -55,6 +57,7 @@ const ButtonLayout = styled.div`
 
 const TaskDetails = (props) => {
   const {id, is_completed, description, due_date} = props.task
+  const dispatch = useDispatch()
 
   const dateOptions = {
     weekday: "long",
@@ -64,6 +67,10 @@ const TaskDetails = (props) => {
     hour: "numeric",
     minute: "numeric",
   };
+
+  const onDelete = () => {
+    dispatch(taskDeleted({id}))
+  }
   
   return (
     <Details $completed={is_completed === "true"}>
@@ -73,7 +80,7 @@ const TaskDetails = (props) => {
           <p>Due {new Date(due_date).toLocaleDateString("en-GB", dateOptions)}</p>
           <ButtonLayout> 
             <Link to={`/tasks/edit/${id}`}><EditButton>Edit</EditButton></Link>
-            <DeleteButton>Delete</DeleteButton>
+            <DeleteButton onClick={onDelete}>Delete</DeleteButton>
           </ButtonLayout>
     </Details>
   )
