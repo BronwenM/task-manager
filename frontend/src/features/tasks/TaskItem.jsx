@@ -9,6 +9,9 @@ const TaskContainer = styled.div`
   color: black;
   border: 2px solid rebeccapurple;
   border-radius: 8px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 `;
 
 const TaskCompleteButton = styled.button`
@@ -17,6 +20,7 @@ const TaskCompleteButton = styled.button`
   border-radius: 50%;
   width: 50px;
   height: 50px;
+  margin-right: 1.5rem;
 `;
 
 
