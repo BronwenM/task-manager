@@ -11,7 +11,7 @@ Make sure the correct versions are available before trying to run the backend.
 ### Backend Database
 The database is built on PostgreSQL version 14.15.
 #### Setup
-1. Create and/or update the credential information in `config/database.yml` to an existing role in your own Postgres installation
+1. Replace if necessary the user and password `development` in `config/database.yml` to an existing user in your own Postgres installation
 
 ### Backend API
 The backend is built on Ruby 3.4.0 and Rails 8.0.1. 
