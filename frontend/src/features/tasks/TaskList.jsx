@@ -26,6 +26,9 @@ const TaskTitle = styled.span`
   user-select: none;
   width: 100%;
   padding: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `
 
 const TaskCompleteButton = styled.button`
@@ -50,13 +53,20 @@ const TaskCompleteButton = styled.button`
   }
   `;
 
+  const ChevronIcons = styled.svg`
+    width: 30px;
+    height 30px;
+    transition: all 0.25s;
+    transform: rotate(${props => props.$toggleOpen ? "180deg" : "0deg"})
+  `
+
 const TaskItem = (props) => {
   const {title, description, due_date, is_completed} = props.task
   const dispatch = useDispatch()
   const [toggleDetails, setToggleDetails] = useState(false);
 
   const handleComplete = (task) => {
-    const { is_completed} = task
+    const { is_completed } = task
 
     const inverseComplete = is_completed === "true" ? "false" : "true"
     dispatch(taskUpdated({...task, is_completed: inverseComplete}))
@@ -68,7 +78,10 @@ const TaskItem = (props) => {
     <>
       <TaskContainer  $completed={is_completed === "true"}>
         <TaskCompleteButton $completed={is_completed === "true"} onClick={() => handleComplete(props.task)}><img src="../assets/checkmark.png" alt="task complete checkmark"/></TaskCompleteButton>
-        <TaskTitle onClick={handleDetailsToggle} >{title}</TaskTitle>
+        <TaskTitle onClick={handleDetailsToggle} >
+          {title}
+          <ChevronIcons $toggleOpen={toggleDetails} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z"/></ChevronIcons>
+        </TaskTitle>
       </TaskContainer>
       {toggleDetails && <TaskDetails task={props.task}/>}
     </>
