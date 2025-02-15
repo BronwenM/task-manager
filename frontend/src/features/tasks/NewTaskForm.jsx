@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { taskCreated } from './tasksSlice';
+import { postTasks } from './tasksSlice';
 import styled from 'styled-components';
 
 const CreateTaskForm = styled.form`
@@ -28,8 +28,9 @@ const CreateTaskForm = styled.form`
 
 const NewTaskForm = () => {
   const dispatch = useDispatch();
+  const [addRequestStatus, setAddRequestStatus] = useState('idle')
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
     const taskData = e.currentTarget
@@ -37,11 +38,21 @@ const NewTaskForm = () => {
     const description = taskData.taskDescription.value
     const due_date = taskData.dueDate.value
 
+    const form = e.currentTarget;
+
     if(title) {
-      dispatch(taskCreated(title, description, due_date))
+      try {
+        setAddRequestStatus('pending')
+        await dispatch(postTasks({title, description, due_date}))
+
+        form.reset();
+      } catch (err) {
+        console.error("Something went wrong and the new task wasn't saved: ", err)
+      } finally {
+        setAddRequestStatus('idle')
+      }
     }
 
-    e.currentTarget.reset();
   }
 
   return (

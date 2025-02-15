@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams, useNavigate } from 'react-router-dom'
-import { selectTaskById, taskUpdated } from '../features/tasks/tasksSlice'
+import { selectTaskById, taskUpdated, updateTasks } from '../features/tasks/tasksSlice'
 import styled from 'styled-components'
+import { useState } from 'react'
 
 const EditTaskForm = styled.form`
   display: flex;
@@ -32,6 +33,8 @@ const EditTaskPage = () => {
   const task = useSelector(state => selectTaskById(state, Number(taskId)))
   const dispatch = useDispatch()
   const navigate = useNavigate();
+  const [requestStatus, setRequestStatus] = useState('idle')
+  
 
 
   if(!task) {
@@ -42,7 +45,7 @@ const EditTaskPage = () => {
     )
   }
 
-  const onChangesSaved = (e) => {
+  const onChangesSaved = async (e) => {
     e.preventDefault()
 
     const taskData = e.currentTarget
@@ -51,8 +54,15 @@ const EditTaskPage = () => {
     const due_date = taskData.dueDate.value
 
     if(title) {
-      dispatch(taskUpdated({id: taskId, title, description, due_date}))
-      navigate(`/`)
+      try {
+        await dispatch(updateTasks({id: taskId, title, description, due_date}))
+      } catch (err) {
+        console.error("Something went wrong updating this task!", err)
+      } finally {
+        setRequestStatus('idle')
+        dispatch(taskUpdated({id: taskId, title, description, due_date}))
+        navigate(`/`)        
+      }
     }
 
   }

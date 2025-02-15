@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { taskDeleted } from './tasksSlice'
+import { deleteTasks, fetchTasks, taskDeleted } from './tasksSlice'
 
 const Details = styled.div`
   width: 100%;
@@ -58,6 +58,7 @@ const ButtonLayout = styled.div`
 const TaskDetails = (props) => {
   const {id, is_completed, description, due_date} = props.task
   const dispatch = useDispatch()
+  const [requestStatus, setRequestStatus] = useState('idle')
 
   const dateOptions = {
     weekday: "long",
@@ -68,8 +69,16 @@ const TaskDetails = (props) => {
     minute: "numeric",
   };
 
-  const onDelete = () => {
-    dispatch(taskDeleted({id}))
+  const onDelete = async () => {
+    try {
+      await dispatch(deleteTasks(id))
+      
+    } catch (err) {
+      console.error("Something went wrong deleting the task:", err)
+    } finally {
+      setRequestStatus('idle')
+      dispatch(taskDeleted({id}))
+    }
   }
   
   return (
@@ -77,7 +86,7 @@ const TaskDetails = (props) => {
           <h3>Task Details</h3>
           <h5><em>{is_completed === "true" ? "Completed": "Incomplete"}</em></h5>
           <p>{description}</p>
-          <p>Due {new Date(due_date).toLocaleDateString("en-GB", dateOptions)}</p>
+          <p>{due_date !== null? `Due ${new Date(due_date).toLocaleDateString("en-GB", dateOptions)}` : 'No due date set'}</p>
           <ButtonLayout> 
             <Link to={`/tasks/edit/${id}`}><EditButton>Edit</EditButton></Link>
             <DeleteButton onClick={onDelete}>Delete</DeleteButton>

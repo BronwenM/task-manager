@@ -1,7 +1,7 @@
 class Api::TasksController < ApplicationController
   #GET /tasks
   def index
-    tasks = Task.all
+    tasks = Task.all.order(created_at: :desc)
     render json: tasks
   end
 
@@ -17,10 +17,10 @@ class Api::TasksController < ApplicationController
   #POST /tasks
   def create
     task = Task.new(
-      title: title,
-      description: description,
-      due_date: due_date,
-      is_complete: is_complete
+      title: params[:title],
+      description: params[:description],
+      due_date: params[:due_date],
+      is_complete: params[:is_complete]
     )
 
     if task.save
@@ -45,11 +45,17 @@ class Api::TasksController < ApplicationController
 
   #PATCH/PUT /tasks/:id
   def update
+    Rails.logger.info("Received parameters:\n#{JSON.pretty_generate(params.to_unsafe_h)}")
+
     task = Task.find_by(id: params[:id])
 
     render json: { message: 'Task not found' }, status: :not_found unless task
 
-    
+    if task
+      task.update(title: params[:title], description: params[:description], due_date: params[:due_date])
+    end
+
+    render json: {task: task, message: 'Task successfully updated'}, status: :ok
 
   end
 
