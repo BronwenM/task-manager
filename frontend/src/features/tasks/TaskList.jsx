@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux"
-import { selectAllTasks, taskUpdated } from "./tasksSlice";
+import { fetchTasks, selectAllTasks, selectTasksError, selectTasksStatus, taskUpdated } from "./tasksSlice";
 import { useEffect, useState } from "react";
 import TaskDetails from "./TaskDetails";
 
@@ -63,7 +63,10 @@ const TaskCompleteButton = styled.button`
 const TaskItem = (props) => {
   const {title, description, due_date, is_completed} = props.task
   const dispatch = useDispatch()
+
   const [toggleDetails, setToggleDetails] = useState(false);
+
+
 
   const handleComplete = (task) => {
     const { is_completed } = task
@@ -90,6 +93,15 @@ const TaskItem = (props) => {
 
 const TaskList = () => {
   const tasks = useSelector(selectAllTasks)
+  const dispatch = useDispatch()
+  const tasksStatus = useSelector(selectTasksStatus)
+  const tasksError = useSelector(selectTasksError)
+
+  useEffect(() => {
+    if(tasksStatus === 'idle') {
+      dispatch(fetchTasks())
+    }
+  }, [tasksStatus, dispatch])
 
   return (
     <section>

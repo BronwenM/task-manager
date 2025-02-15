@@ -1,28 +1,39 @@
-import { createSlice, nanoid } from '@reduxjs/toolkit'
+import { createSlice, nanoid, createAsyncThunk } from '@reduxjs/toolkit'
 
-const initialState = [
-  {
-    "id": 1,
-    "title": "Buy groceries",
-    "description": "Get ingredients for dinner",
-    "due_date": "2025-02-20T00:00:00.000Z",
-    "is_completed": "false"
-  },
-  {
-    "id": 2,
-    "title": "Finish project report",
-    "description": "Complete the final section of the report",
-    "due_date": "2025-02-18T00:00:00.000Z",
-    "is_completed": "false"
-  },
-  {
-    "id": 3,
-    "title": "Call John",
-    "description": "Discuss the new project updates with John",
-    "due_date": "2025-02-15T00:00:00.000Z",
-    "is_completed": "true"
+const initialState = {
+  tasks: [],
+  status: 'idle',
+  error: null
+}
+
+//CREATE
+export const postTasks = createAsyncThunk(
+  'tasks/postTasks',
+  async () => {
+    
   }
-]
+)
+
+//READ
+export const fetchTasks = createAsyncThunk(
+  'tasks/fetchTasks',
+  async () => {
+    const res = await fetch("http://localhost:3000/api/tasks")  
+    return await res.json()
+  },
+  {
+    condition(arg, thunkApi) {
+      const tasksStatus = selectTasksStatus(thunkApi.getState())
+      if(tasksStatus !== 'idle') {
+        return false
+      }
+    }
+  }
+)
+
+//UPDATE
+
+//DELETE
 
 const tasksSlice = createSlice({
   name: 'tasks',
@@ -30,7 +41,7 @@ const tasksSlice = createSlice({
   reducers: {
     taskCreated: {
       reducer(state, action) {
-        state.push(action.payload)
+        state.tasks.push(action.payload)
       },
       prepare(title, description, due_date) {
         return {
@@ -41,7 +52,7 @@ const tasksSlice = createSlice({
     taskUpdated: {
       reducer(state, action) {
         const {id, title, description, due_date, is_completed} = action.payload
-        const taskWithId = state.find(task => task.id == id)
+        const taskWithId = state.tasks.find(task => task.id == id)
 
         if(taskWithId) {
           taskWithId.title = title
@@ -56,14 +67,27 @@ const tasksSlice = createSlice({
     taskDeleted: {
       reducer(state, action) {
         const {id} = action.payload
-        const taskWithId = state.find(task => task.id == id)
+        const taskWithId = state.tasks.find(task => task.id == id)
         
         if(taskWithId) {
-          return state.filter(task => task.id !== id)
+          return state.tasks.filter(task => task.id !== id)
         }
 
       }
     }
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchTasks.pending, (state, action) => {
+      state.status = 'pending'
+    })
+    .addCase(fetchTasks.fulfilled, (state, action) => {
+      state.status = 'succeeded'
+      state.tasks.push(...action.payload)
+    })
+    .addCase(fetchTasks.rejected, (state, action) => {
+      state.status = 'failed'
+      state.error = action.error.message ?? 'Unknown Error'
+    })
   }
 })
 
@@ -73,5 +97,7 @@ export default tasksSlice.reducer
 export const {taskCreated, taskUpdated, taskDeleted} = tasksSlice.actions
 
 //Selectors to get state data
-export const selectAllTasks = (state) => state.tasks
-export const selectTaskById = (state, taskId) => state.tasks.find(task => task.id === taskId)
+export const selectAllTasks = (state) => state.tasks.tasks
+export const selectTaskById = (state, taskId) => state.tasks.tasks.find(task => task.id === taskId)
+export const selectTasksStatus = (state) => state.tasks.status
+export const selectTasksError = (state) => state.tasks.error
