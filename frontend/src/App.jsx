@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import Navbar from './components/Navbar'
-import {BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom'
+import { Navbar } from './components/index'
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import EditTaskPage from './pages/EditTaskPage'
 import NewTaskPage from './pages/NewTaskPage'
@@ -28,10 +28,10 @@ function App() {
         <Navbar />
         <ContentContainer>
           <Routes>
-            <Route path='/' element={<HomePage/>} />
-            <Route path='/tasks/new' element={<NewTaskPage/>} />
-            <Route path='/tasks/edit/:taskId' element={<EditTaskPage/>} />
-          </Routes>          
+            <Route path='/' element={<HomePage />} />
+            <Route path='/tasks/new' element={<NewTaskPage />} />
+            <Route path='/tasks/edit/:taskId' element={<EditTaskPage />} />
+          </Routes>
         </ContentContainer>
       </LayoutContainer>
     </Router>
