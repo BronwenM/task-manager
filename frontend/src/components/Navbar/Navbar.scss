@@ -1,0 +1,24 @@
+.navbar {
+  grid-area: nav;
+  
+  height: 100vh;
+  width: 100%;
+  background-color:rgb(103, 153, 234);
+  color: #fff;
+  padding: 3rem 1rem;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.navbar__link {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+
+  &:hover {
+    text-decoration: underline;
+    text-underline-offset: 8px;
+  }
+}

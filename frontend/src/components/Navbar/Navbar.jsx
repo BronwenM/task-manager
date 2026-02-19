@@ -1,35 +1,15 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
-import styled from 'styled-components'
+import './Navbar.scss'
 
-const SideNav = styled.nav`
-  height: 100vh;
-  width: 150px;
-  background-color:rgb(103, 153, 234);
-  color: #fff;
-  padding: 3rem 1rem;
-  text-align: left;
-  position:fixed
-`
-const NavLink = styled(Link)`
-  display: block;
-  color: white;
-  margin-bottom: 1.5rem;
-
-  &:hover {
-    color: white;
-    text-decoration: underline;
-    text-underline-offset: 8px;
-  }
-`
 const Navbar = () => {
   return (
-    <>
-      <SideNav>
-        <NavLink to='/'>HOME</NavLink>
-        <NavLink to='/tasks/new'>NEW TASK +</NavLink>
-      </SideNav>
-    </>
+    <nav className='navbar'>
+      <Link to='/' className='navbar__link'>HOME</Link>
+      <Link to='/tasks/new' className='navbar__link'>NEW TASK +</Link>
+      <Link to='/groups' className='navbar__link'>GROUPS</Link>
+      <Link to='/tags' className='navbar__link'>TAGS</Link>
+      <Link to='/calendar' className='navbar__link'>CALENDAR</Link>
+    </nav>
   )
 }
 

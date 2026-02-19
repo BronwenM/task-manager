@@ -1,10 +1,9 @@
-import React from 'react'
-import NewTaskForm from '../features/tasks/NewTaskForm'
+import { NewTaskForm } from '../components/index'
 
 const NewTaskPage = () => {
   return (
     <section>
-      <h2>Create a New Task</h2>
+      <h1>Create a New Task</h1>
       <NewTaskForm />
     </section>
   )

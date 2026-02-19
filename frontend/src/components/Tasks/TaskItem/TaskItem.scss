@@ -1,39 +1,65 @@
 .task-item {
-  display: flex;
+  // display: flex;
   align-items: center;
   justify-content: flex-start;
+
+  display: grid;
+  grid-template:
+    "checkbox header"
+    ". info"
+    ". actions";
+  grid-template-columns: auto 1fr;
+
   padding: 2rem;
-  // border-bottom: 1px solid #ccc;
-  gap: 2rem;
+
+  column-gap: 2rem;
   width: 100%;
   background: #f2f8ff;
   border-radius: 16px;
+  transition: all 120ms ease-in-out;
+
+  user-select: none;
+  cursor: pointer;
 }
 
 .task-item__btn {
-  content: '';
-  
-}
+  grid-area: checkbox;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  margin: 0;
 
-.task-item__content {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  // gap: 2rem;
-  width: 100%;
+  font: inherit;
+  color: #007bff;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid #ccc;
+
+  border-radius: 0.5em;
+
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+
+  &::before {
+    content: "";
+    width: 0.65rem;
+    height: 0.65rem;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em #007bff;
+    clip-path: polygon(14% 44%, 0% 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  }
+
+  &:checked::before {
+    transform: scale(3.5) translateY(-0.09rem);
+  }
+
 }
 
 .task-item__text {
-  font-size: 1.2rem;
-
-  h2 {
-    margin: 0;
-  }
-
-  p {
-    margin: 0;
-    color: #666;
-  }
+  font-size: 1.75rem;
+  margin: 0;
 }
 
 .task-item__info {
@@ -47,11 +73,84 @@
     color: #999;
   }
 
+  .task-item__tag-grp {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+
   .task-item__tag {
     font-size: 0.8rem;
     color: #007bff;
     background-color: #e7f1ff;
-    padding: 2px 6px;
+    padding: 4px 12px;
     border-radius: 4px;
+    user-select: none;
+    transition: background-color 120ms ease-in-out;
+
+    &:hover {
+      background-color: #d0e4ff;
+      cursor: pointer;
+    }
+  }
+}
+
+.task-item__details {
+  grid-area: info;
+
+  &.hidden {
+    display: none;
+    visibility: hidden;
+  }
+}
+
+
+.task-item__actions {
+  grid-area: actions;
+
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  justify-content: flex-start;
+  margin-top: 2rem;
+
+  button {
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 120ms ease-in-out;
+  }
+
+  .task-item__delete-btn {
+    background: crimson;
+
+    &:hover {
+      background-color: darkred;
+    }
+  }
+
+  .task-item__edit-btn {
+    background: none;
+    text-decoration: underline;
+    text-underline-offset: 6px;
+    color: #007bff;
+
+    &:hover {
+      background-color: #007bff;
+      color: #fcfcfc;
+      text-decoration: none;
+    }
+  }
+}
+
+// Style for completed tasks
+.task-item.completed {
+  background: #e0e0e0;
+  color: #999;
+
+  & *:is(.task-item__text, .task-item__due-date) {
+    text-decoration: line-through;
   }
 }

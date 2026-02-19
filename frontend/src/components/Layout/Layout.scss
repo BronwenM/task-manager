@@ -1,0 +1,15 @@
+.layout {
+  display: grid;
+  grid-template-areas: 
+  "nav content";
+  grid-template-columns: 200px 1fr;
+  column-gap: 2rem;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.layout__content {
+  grid-area: content;
+  padding: 2rem 2rem 2rem 0rem;
+}
