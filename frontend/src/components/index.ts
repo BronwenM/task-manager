@@ -4,6 +4,7 @@ import TaskList from './Tasks/TaskList/TaskList';
 import TaskDetails from './Tasks/TaskDetails/TaskDetails';
 import TaskItem from './Tasks/TaskItem/TaskItem';
 import Layout from './Layout/Layout';
+import TaskGroupPanel from './TaskGroupPanel/TaskGroupPanel';
 
 export {
   Navbar,
@@ -11,5 +12,6 @@ export {
   TaskList,
   TaskDetails,
   TaskItem,
-  Layout
+  Layout,
+  TaskGroupPanel
 }

@@ -1,0 +1,123 @@
+.task-group-panel {
+  display: flex;
+  flex-direction: column;
+  // gap: 2rem;
+  justify-content: flex-end;
+  color: #1b1e30;
+
+
+  background-color: #eef4ff;
+  border-radius: 16px;
+  padding: 0.5rem 2rem 1.5rem;
+  aspect-ratio: 1;
+  min-width: 250px;
+
+  box-shadow: 4px 4px 5px rgba(131, 131, 131, 0.1);
+
+
+
+  /* .task-group-panel__text h3,
+  .task-group-panel__text p {
+    text-decoration: underline #1b1e3000;
+    text-underline-offset: 0;
+    transition: text-underline-offset 0.15s ease-in-out;
+  } */
+
+  // Colour options for task group panels
+
+  /* BLUES */
+  &.blue {
+    background-color: #d0e7ff;
+  }
+
+  &.sapphire {
+    background-color: #96b2d0;
+  }
+
+  &.navy {
+    background-color: #8a8ada;
+  }
+
+  &.teal {
+    background-color: #d0fff4;
+  }
+
+  &.purple {
+    background-color: #e0d0ff;
+  }
+
+  /* GREENS */
+  &.green {
+    background-color: #d0ffd8;
+  }
+
+  &.emerald {
+    background-color: #d0ffe7;
+  }
+
+  /* REDS */
+  &.red {
+    background-color: #ff8f8f;
+  }
+
+  &.pink {
+    background-color: #ffc1eb;
+  }
+
+  /* YELLOWS */
+  &.yellow {
+    background-color: #ffecac;
+  }
+
+  &.orange {
+    background-color: #ffa274;
+  }
+
+  &.sienna {
+    background-color: #b2825a;
+  }
+
+
+  img {
+    width: 75%;
+    height: 75%;
+    object-fit: contain;
+    margin: 0 auto;
+    aspect-ratio: 1;
+  }
+}
+
+.task-group-panel:hover {
+  box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.15);
+
+  /* .task-group-panel__text h3,
+  .task-group-panel__text p {
+    text-underline-offset: 4px;
+    text-decoration: underline #1b1e30;
+    // text-decoration-thickness: 2.5px;
+
+  } */
+}
+
+.task-group-panel__text {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  h3,
+  p {
+    margin: 0;
+  }
+
+  p {
+    font-size: 0.9rem;
+    color: #555;
+    font-weight: 400;
+  }
+}
+
+.task-group__arrow {
+  font-size: 2rem;
+  // color: #555;
+  line-height: 1;
+}

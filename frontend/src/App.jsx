@@ -3,6 +3,8 @@ import HomePage from './pages/HomePage'
 import EditTaskPage from './pages/EditTaskPage'
 import NewTaskPage from './pages/NewTaskPage'
 import { Layout } from './components/index'
+import TaskGroupsPage from './pages/TaskGroupsPage'
+import GroupDisplayPage from './pages/GroupDisplayPage'
 
 
 
@@ -17,7 +19,9 @@ function App() {
           <Route path='/tasks/new' element={<NewTaskPage />} />
           <Route path='/tasks/edit/:taskId' element={<EditTaskPage />} />
 
-          <Route path='/groups' element={<h1>Groups Page</h1>} />
+          <Route path='/groups' element={<TaskGroupsPage />} />
+          <Route path='/groups/:groupId' element={<GroupDisplayPage />} />
+
           <Route path='/tags' element={<h1>Tags Page</h1>} />
           <Route path='/calendar' element={<h1>Calendar Page</h1>} />
         </Routes>
