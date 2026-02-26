@@ -20,7 +20,7 @@ function App() {
           <Route path='/tasks/edit/:taskId' element={<EditTaskPage />} />
 
           <Route path='/groups' element={<TaskGroupsPage />} />
-          <Route path='/groups/:groupId' element={<GroupDisplayPage />} />
+          <Route path='/groups/:groupId/:groupTitle' element={<GroupDisplayPage />} />
 
           <Route path='/tags' element={<h1>Tags Page</h1>} />
           <Route path='/calendar' element={<h1>Calendar Page</h1>} />

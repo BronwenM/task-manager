@@ -77,6 +77,8 @@
     display: flex;
     flex-direction: row;
     gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
   }
 
   .task-item__tag {
@@ -87,6 +89,7 @@
     border-radius: 4px;
     user-select: none;
     transition: background-color 120ms ease-in-out;
+    height: min-content;
 
     &:hover {
       background-color: #d0e4ff;

@@ -4,27 +4,31 @@ export const taskGroups = [
     title: 'Work',
     colour: 'purple',
     icon: 'work-icon.png',
-    taskCount: 5
+    link: 'work',
+    tasks: [1, 2] // Example task IDs associated with this group
   },
   {
     id: 2,
     title: 'Personal',
     colour: 'blue',
+    link: 'personal',
     icon: 'personal-icon.png',
-    taskCount: 3
+    tasks: [3] // Example task IDs associated with this group
   },
   {
     id: 3,
     title: 'Fitness',
     colour: 'emerald',
     icon: 'fitness-icon.png',
-    taskCount: 4
+    link: 'fitness',
+    tasks: [] // No tasks currently associated with this group
   },
   {
     id: 4,
     title: 'Hobbies',
     colour: 'orange',
+    link: 'hobbies',
     icon: 'hobbies-icon.png',
-    taskCount: 2
+    tasks: [] // No tasks currently associated with this group
   }
 ]

@@ -1,31 +1,56 @@
-const allTasks = [
+export const allTasks = [
   {
     id: 1,
     title: 'Task 1',
     description: 'This is the first task.',
-    status: 'To Do',
+    completed: false,
     priority: 'High',
-    dueDate: '2024-07-01',
-    groupId: 1,
+    dueDate: '2026-10-05T14:48:00.000Z',
+    tags: ['work', 'urgent'],
   },
   {
     id: 2,
     title: 'Task 2',
     description: 'This is the second task.',
-    status: 'In Progress',
+    completed: false,
     priority: 'Medium',
-    dueDate: '2024-07-05',
-    groupId: 1,
+    dueDate: '2026-10-05T14:48:00.000Z',
+    tags: ['personal'],
   },
   {
     id: 3,
     title: 'Task 3',
     description: 'This is the third task.',
-    status: 'Done',
+    completed: true,
     priority: 'Low',
-    dueDate: '2024-07-10',
-    groupId: 2,
+    dueDate: '2026-10-05T14:48:00.000Z',
+    tags: ['fitness'],
   },
+  {
+    id: 4,
+    title: 'Task 4',
+    description: 'This is the fourth task.',
+    completed: false,
+    priority: 'High',
+    dueDate: '2026-10-05T14:48:00.000Z',
+    tags: ['hobbies'],
+  },
+  {
+    id: 5,
+    title: 'Task 5',
+    description: 'This is the fifth task.',
+    completed: true,
+    priority: 'Medium',
+    dueDate: '2026-10-05T14:48:00.000Z',
+    tags: ['work'],
+  },
+  {
+    id: 6,
+    title: 'Task 6',
+    description: 'This is the sixth task.',
+    completed: false,
+    priority: 'Low',
+    dueDate: '2026-10-05T14:48:00.000Z',
+    tags: ['personal', 'urgent'],
+  }
 ]
-
-export default allTasks
