@@ -25,7 +25,7 @@ const TaskItem = ({ title, description, dueDate, tags, completed }) => {
 
   return (
     <div className={`task-item ${isCompleted ? 'completed' : ''}`} onClick={toggleDetails}>
-      <input type='checkbox' className='task-item__btn' checked={isCompleted} onClick={handleTaskCompleted} />
+      <input type='checkbox' className='task-item__btn' checked={isCompleted} onClick={handleTaskCompleted} onChange={() => {}} />
       <div className='task-item__header'>
         <h2 className='task-item__text'>{title}</h2>
         <div className='task-item__info'>
