@@ -20,7 +20,10 @@ class Api::TasksController < ApplicationController
       title: params[:title],
       description: params[:description],
       due_date: params[:due_date],
-      is_complete: params[:is_complete]
+      is_complete: params[:is_complete],
+      priority: params[:priority],
+      tags: params[:tags],
+      user_id: params[:user_id]
     )
 
     if task.save
@@ -52,7 +55,7 @@ class Api::TasksController < ApplicationController
     render json: { message: 'Task not found' }, status: :not_found unless task
 
     if task
-      task.update(title: params[:title], description: params[:description], due_date: params[:due_date])
+      task.update(title: params[:title], description: params[:description], due_date: params[:due_date], is_complete: params[:is_complete], priority: params[:priority], tags: params[:tags], task_group_id: params[:task_group_id])
     end
 
     render json: {task: task, message: 'Task successfully updated'}, status: :ok
@@ -63,5 +66,6 @@ class Api::TasksController < ApplicationController
 
   #Define accepted params from url
   def task_params
+    params.permit(:title, :description, :due_date, :is_complete, :priority, tags: [], :user_id, :task_group_id)
   end
 end

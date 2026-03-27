@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { selectTaskById, taskUpdated, updateTasks } from '../features/tasks/tasksSlice'
 import styled from 'styled-components'
 import { useState } from 'react'
+import { allTasks } from '../assets/Static Data/tasks'
 
 const EditTaskForm = styled.form`
   display: flex;

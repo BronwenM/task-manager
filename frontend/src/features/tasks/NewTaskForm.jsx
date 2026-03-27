@@ -41,6 +41,7 @@ const NewTaskForm = () => {
     const form = e.currentTarget;
 
     if(title) {
+      console.log("Submitting new task with data: ", {title, description, due_date})
       try {
         setAddRequestStatus('pending')
         await dispatch(postTasks({title, description, due_date}))

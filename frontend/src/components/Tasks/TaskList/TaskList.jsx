@@ -6,7 +6,7 @@ const TaskList = ({ tasks }) => {
     <section className="task-list">
       <div className="task-list__list">
         {tasks?.map(task => (
-          <TaskItem key={task.id} {...task} />
+          <TaskItem key={task.id} task={task} />
         ))}
       </div>
     </section>

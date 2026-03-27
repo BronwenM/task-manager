@@ -52,5 +52,33 @@ export const allTasks = [
     priority: 'Low',
     dueDate: '2026-10-05T14:48:00.000Z',
     tags: ['personal', 'urgent'],
+  },
+  {
+    id: 7,
+    title: 'Task 7',
+    description: 'This is the seventh task.',
+    completed: false,
+    priority: 'Low',
+    dueDate: '2026-03-22T14:48:00.000Z',
+    tags: ['personal', 'urgent'],
   }
 ]
+
+export const deleteTask = (id) => {
+  let taskToDelete = allTasks.find(task => task.id === id)
+  if (taskToDelete) {
+    allTasks.splice(allTasks.indexOf(taskToDelete), 1)
+    console.log(`Task with id ${id} has been deleted.`)
+  }
+  else {
+    console.error(`Task with id ${id} not found. No task has been deleted.`)
+  }
+}
+
+export const updateTask = (id, fieldToUpdate, newValue) => {
+  console.log(`Task with id ${id} has been updated with data:`, { [fieldToUpdate]: newValue })
+}
+
+export const createTask = (taskData) => {
+  console.log("Creating new task with data: ", taskData)
+}

@@ -1,0 +1,35 @@
+.dash-panel-grp {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.dash-panel {
+  flex: 1;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.dash-panel:nth-child(1) {
+  background-color: #d0e7ff;
+}
+
+.dash-panel:nth-child(2) {
+  background-color: #d0ffd8;
+}
+
+.dash-panel:nth-child(3) {
+  background-color: #ff8f8f;
+}
+
+.dash-panel h2 {
+  margin-top: 0;
+}
+
+.dash-panel p {
+  margin: 0;
+  color: #555;
+  font-size: 4rem;
+}

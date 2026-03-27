@@ -10,15 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_15_022920) do
+ActiveRecord::Schema[8.0].define(version: 2026_03_23_183702) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
+  create_table "task_groups", force: :cascade do |t|
+    t.string "name", default: "New Group"
+    t.integer "user_id", null: false
+    t.string "color"
+    t.string "icon"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tasks", force: :cascade do |t|
-    t.string "title"
+    t.string "title", null: false
     t.text "description"
     t.datetime "due_date", precision: nil
     t.boolean "is_complete", default: false
+    t.string "priority", default: "low"
+    t.string "tags", default: [], array: true
+    t.integer "user_id", null: false
+    t.integer "task_group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username", null: false
+    t.string "email", null: false
+    t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

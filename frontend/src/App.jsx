@@ -15,13 +15,14 @@ function App() {
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='*' element={<Navigate to='/' />} />
-          
+
           <Route path='/profile' element={<h1>Profile Page</h1>} />
           
           <Route path='/tasks' element={<h1>All Tasks Page</h1>} />
           <Route path='/tasks/:taskId' element={<h1>Single Task Page</h1>} />
           <Route path='/tasks/new' element={<NewTaskPage />} />
           <Route path='/tasks/edit/:taskId' element={<EditTaskPage />} />
+          <Route path='/tasks/delete/:taskId' element={<h1>Delete Task Page</h1>} />
 
           <Route path='/groups' element={<TaskGroupsPage />} />
           <Route path='/groups/:groupId/:groupTitle' element={<GroupDisplayPage />} />

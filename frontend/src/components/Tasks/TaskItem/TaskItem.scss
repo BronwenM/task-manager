@@ -117,20 +117,24 @@
   justify-content: flex-start;
   margin-top: 2rem;
 
-  button {
+  [class$='-btn'] {
     color: #fff;
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 120ms ease-in-out;
+    min-width: 75px;
+    text-align: center;
   }
 
   .task-item__delete-btn {
     background: crimson;
 
     &:hover {
-      background-color: darkred;
+      background: none;
+      outline: crimson 1px solid;
+      color: crimson;
     }
   }
 
@@ -141,9 +145,10 @@
     color: #007bff;
 
     &:hover {
-      background-color: #007bff;
-      color: #fcfcfc;
+      // background-color: #007bff;
+      // color: #fcfcfc;
       text-decoration: none;
+      outline: #007bff 1px solid;
     }
   }
 }
